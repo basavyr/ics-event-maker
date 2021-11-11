@@ -9,9 +9,10 @@ from pathlib import Path
 
 import icalendar as ical
 
-# check if the imported modules are working
-print(ical.__version__)
-print(Calendar.__name__)
+if __name__ == "__main__":
+    # check if the imported modules are working
+    print(ical.__version__)
+    print(Calendar.__name__)
 
 
 # cal = Calendar()
@@ -46,3 +47,10 @@ def Create_iCal_Event(start, end, stamp, summary, description):
     event.add('description', description)
     cal.add_component(event)
     return cal
+
+
+def CreateDateTime(year, month, day, hour, minute, second):
+    return datetime(year, month, day, hour, minute, second, tzinfo=pytz.UTC)
+
+
+print(CreateDateTime(2019, 1, 1, 10, 0, 0))
