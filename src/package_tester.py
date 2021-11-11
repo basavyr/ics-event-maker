@@ -53,4 +53,19 @@ def CreateDateTime(year, month, day, hour, minute, second):
     return datetime(year, month, day, hour, minute, second, tzinfo=pytz.UTC)
 
 
-print(CreateDateTime(2019, 1, 1, 10, 0, 0))
+# Define calendar parameters
+EMAIL = 'robert.poenaru@icloud.com'
+
+
+# Generate a set of dates for the calendar
+DESCRIPTION = "Radiotherapy sessions | B3"
+SUMMARY = lambda id: f'☢️ RT Session-{id}'
+YEAR = 2021
+M_NOV = 11
+M_DEC = 12
+D_NOV = [x for x in range(15, 31)]
+D_DEC = [x for x in range(1, 32)]
+
+# define the RT start time and end time
+START_SESSION = [11, 36, 0]
+END_SESSION = [12, 30, 0]
