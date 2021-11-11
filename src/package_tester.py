@@ -69,3 +69,20 @@ D_DEC = [x for x in range(1, 32)]
 # define the RT start time and end time
 START_SESSION = [11, 36, 0]
 END_SESSION = [12, 30, 0]
+
+# generate proper weekdays for November and December
+print(D_NOV)
+
+
+id = 1
+PROPER_D_NOV = []
+for counter in range(len(D_NOV)):
+    print(id, counter)
+    if(id <= 7):
+        PROPER_D_NOV.append(D_NOV[counter])
+        id += 1
+    else:
+        PROPER_D_NOV.pop()
+        PROPER_D_NOV.pop()
+        id = 1
+print(PROPER_D_NOV)
