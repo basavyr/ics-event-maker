@@ -6,8 +6,9 @@ import cal_event_maker as event_maker
 import package_tester
 
 nov_first_work_day = 15
+nov_day_id = 1
 dec_first_work_day = 1
-
+dec_day_id = 3
 nov_last_day = 30
 dec_last_day = 31
 
@@ -16,10 +17,10 @@ dec_month = [x for x in range(1, dec_last_day + 1)]
 
 # generate the days for RT sessions for the month of November
 nov_work_days = day_gen.generate_month_work_days(
-    nov_first_work_day, nov_month)
+    nov_first_work_day, nov_month, nov_day_id)
 # generate the days for RT sessions for the month of December
 dec_work_days = day_gen.generate_month_work_days(
-    dec_first_work_day, dec_month)
+    dec_first_work_day, dec_month, dec_day_id)
 
 
 # Define calendar parameters
@@ -27,7 +28,7 @@ EMAIL = 'robert.poenaru@icloud.com'
 
 # Generate a set of dates for the calendar
 DESCRIPTION = "Radiotherapy sessions | B3"
-SUMMARY = lambda id: f'☢️ RT Session-{id}'
+SUMMARY = lambda id, month: f'☢️ RT Session-{id}-{month}'
 YEAR = 2021
 M_NOV = 11
 M_DEC = 12
@@ -59,16 +60,27 @@ cal = package_tester.Calendar()
 # Set ourselves as the calendar's owner, required by most servers
 cal.add('attendee', f'MAILTO:{EMAIL}')
 
-event = lambda start, end, id: event_maker.Create_iCal_Event(
-    start, end, STAMP, SUMMARY(id), DESCRIPTION, LOCATION)
+event = lambda start, end, id, month: event_maker.Create_iCal_Event(
+    start, end, STAMP, SUMMARY(id, month), DESCRIPTION, LOCATION)
 
 # create the list of sessions for November
-nov_sessions = [event(nov_start_datetimes[id], nov_end_datetimes[id], id + 1)
+nov_sessions = [event(nov_start_datetimes[id], nov_end_datetimes[id], id + 1, M_NOV)
                 for id in range(len(nov_start_datetimes))]
 
+dec_sessions = [event(dec_start_datetimes[id], dec_end_datetimes[id], id + 1, M_DEC)
+                for id in range(len(dec_start_datetimes))]
+
+
+# add the November sessions to the calendar
 # for session in nov_sessions:
 #     cal.add_component(session)
-cal.add_component(nov_sessions[0])
+cal.add_component(dec_sessions[0])
 
-with open('test_calendar.ics', 'wb') as f:
+print(dec_work_days)
+
+# add the December sessions to the calendar
+# for session in dec_sessions:
+# cal.add_component(session)
+
+with open('RT_november.ics', 'wb') as f:
     f.write(cal.to_ical())
