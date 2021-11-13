@@ -14,11 +14,12 @@ def CreateDateTime(year, month, day, hour, minute, second):
     return datetime(year, month, day, hour, minute, second, tzinfo=timezone('Europe/Bucharest'))
 
 
-def Create_iCal_Event(start, end, stamp, summary, description):
+def Create_iCal_Event(start, end, stamp, summary, description, location):
     event = Event()
     event.add('summary', summary)
     event.add('dtstart', start)
     event.add('dtend', end)
     event.add('dtstamp', stamp)
     event.add('description', description)
+    event.add('location', location)
     return event

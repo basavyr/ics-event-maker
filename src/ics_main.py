@@ -39,6 +39,8 @@ START_SESSION = [11, 36, 0]
 END_SESSION = [12, 30, 0]
 STAMP = event_maker.datetime.utcnow()
 
+LOCATION = 'Amethyst Radiotherapy Calea Odăii, 44, Otopeni, 030171, Romania'
+
 # create datetime with the values given by the configured session constants
 dt_start = lambda day, month: event_maker.CreateDateTime(
     YEAR, month, day, START_SESSION[0], START_SESSION[1], START_SESSION[2])
@@ -57,10 +59,16 @@ cal = package_tester.Calendar()
 # Set ourselves as the calendar's owner, required by most servers
 cal.add('attendee', f'MAILTO:{EMAIL}')
 
-test_event = event_maker.Create_iCal_Event(
-    nov_start_datetimes[0], nov_end_datetimes[0], STAMP, SUMMARY(1), DESCRIPTION)
+event = lambda start, end, id: event_maker.Create_iCal_Event(
+    start, end, STAMP, SUMMARY(id), DESCRIPTION, LOCATION)
 
-cal.add_component(test_event)
+# create the list of sessions for November
+nov_sessions = [event(nov_start_datetimes[id], nov_end_datetimes[id], id + 1)
+                for id in range(len(nov_start_datetimes))]
+
+# for session in nov_sessions:
+#     cal.add_component(session)
+cal.add_component(nov_sessions[0])
 
 with open('test_calendar.ics', 'wb') as f:
     f.write(cal.to_ical())
