@@ -32,8 +32,6 @@ SUMMARY = lambda id, month: f'☢️ RT Session-{id}-{month}'
 YEAR = 2021
 M_NOV = 11
 M_DEC = 12
-# D_NOV = [x for x in range(15, 31)]
-# D_DEC = [x for x in range(1, 32)]
 
 # define the RT start time and end time
 START_SESSION = [11, 36, 0]
@@ -72,15 +70,12 @@ dec_sessions = [event(dec_start_datetimes[id], dec_end_datetimes[id], id + 1, M_
 
 
 # add the November sessions to the calendar
-# for session in nov_sessions:
-#     cal.add_component(session)
-cal.add_component(dec_sessions[0])
-
-print(dec_work_days)
+for session in nov_sessions:
+    cal.add_component(session)
 
 # add the December sessions to the calendar
-# for session in dec_sessions:
-# cal.add_component(session)
+for session in dec_sessions:
+    cal.add_component(session)
 
-with open('RT_november.ics', 'wb') as f:
+with open('RT_Sessions.ics', 'wb') as f:
     f.write(cal.to_ical())
