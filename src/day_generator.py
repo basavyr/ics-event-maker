@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 nov_first_work_day = 15
 dec_first_work_day = 1
 nov_end_day = 30
@@ -7,10 +8,6 @@ dec_end_day = 31
 
 nov_month_days = [x for x in range(1, nov_end_day + 1)]
 dec_month_days = [x for x in range(1, dec_end_day + 1)]
-
-
-# print(nov_month_days)
-# print(dec_month_days)
 
 
 def generate_month_work_days(month_first_work_day, month_days):
@@ -34,4 +31,10 @@ def generate_month_work_days(month_first_work_day, month_days):
     return work_days
 
 
-print(generate_month_work_days(nov_first_work_day, nov_month_days))
+if __name__ == "__main__":
+    nov_work_days = generate_month_work_days(
+        nov_first_work_day, nov_month_days)
+    dec_work_days = generate_month_work_days(
+        dec_first_work_day, dec_month_days)
+    print(f'November: {nov_work_days}')
+    print(f'December: {dec_work_days}')
