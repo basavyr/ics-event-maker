@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 shutils = "*"
 icalendar = "*"
+matplotlib = "*"
+numpy = "*"
+autopep8 = "*"
 
 [dev-packages]
 
