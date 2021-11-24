@@ -69,3 +69,15 @@ for day in range(RT_START_DATE, 31, 7):
     rt_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
                                         RT_START_HOUR[0], RT_START_HOUR[1], RT_START_HOUR[2])
     print(rt_day)
+
+# show the dates for nutrition
+for day in range(NUTRITION_START_DATE, 31, 7):
+    nutrition_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
+                                               NUTRITION_START_HOUR[0], NUTRITION_START_HOUR[1], NUTRITION_START_HOUR[2])
+    print(nutrition_day)
+
+# show the dates for toxicology
+for day in range(NUTRITION_START_DATE, 31, 7):
+    toxicology_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
+                                                TOXIC_START_HOUR[0], TOXIC_START_HOUR[1], TOXIC_START_HOUR[2])
+    print(toxicology_day)
