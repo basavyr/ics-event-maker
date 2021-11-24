@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+ATTENDEE:MAILTO:robert.poenaru@icloud.com
+BEGIN:VEVENT
+SUMMARY:🩺 Radiology Consultation | Dr. Zarma
+DTSTART;TZID=Europe/Bucharest;VALUE=DATE-TIME:20211207T121000
+DTEND;TZID=Europe/Bucharest;VALUE=DATE-TIME:20211207T131000
+DTSTAMP;VALUE=DATE-TIME:20211124T173701Z
+DESCRIPTION:🩺 Radiology Consultation | Dr. Zarma
+LOCATION:Amethyst Radiotherapy Calea Odăii\, 44\, Otopeni\, 030171\, Roma
+ nia
+END:VEVENT
+END:VCALENDAR

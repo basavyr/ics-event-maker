@@ -65,19 +65,38 @@ NUTRITION_START_HOUR = [12, 10, 00]
 NUTRITION_DESCRIPTION = '🥗 Nutrition Consultation'
 
 # show the dates for RT
+RT_DAYS_START = []
+RT_DAYS_END = []
 for day in range(RT_START_DATE, 31, 7):
-    rt_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
-                                        RT_START_HOUR[0], RT_START_HOUR[1], RT_START_HOUR[2])
-    print(rt_day)
+    rt_day_0 = event_maker.CreateDateTime(YEAR, M_DEC, day,
+                                          RT_START_HOUR[0], RT_START_HOUR[1], RT_START_HOUR[2])
+    rt_day_1 = event_maker.CreateDateTime(YEAR, M_DEC, day,
+                                          RT_START_HOUR[0] + 1, RT_START_HOUR[1], RT_START_HOUR[2])
+    RT_DAYS_START.append(rt_day_0)
+    RT_DAYS_END.append(rt_day_1)
 
+NUTRITION_DAYS = []
 # show the dates for nutrition
 for day in range(NUTRITION_START_DATE, 31, 7):
     nutrition_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
                                                NUTRITION_START_HOUR[0], NUTRITION_START_HOUR[1], NUTRITION_START_HOUR[2])
-    print(nutrition_day)
+    NUTRITION_DAYS.append(nutrition_day)
 
+
+TOXIC_DAYS = []
 # show the dates for toxicology
-for day in range(NUTRITION_START_DATE, 31, 7):
+for day in range(TOXIC_START_DATE, 31, 7):
     toxicology_day = event_maker.CreateDateTime(YEAR, M_DEC, day,
                                                 TOXIC_START_HOUR[0], TOXIC_START_HOUR[1], TOXIC_START_HOUR[2])
-    print(toxicology_day)
+    TOXIC_DAYS.append(toxicology_day)
+
+
+cal = package_tester.Calendar()
+# Set ourselves as the calendar's owner, required by most servers
+cal.add('attendee', f'MAILTO:{EMAIL}')
+
+cal.add_component(event_maker.Create_iCal_Event(
+    RT_DAYS_START[0], RT_DAYS_END[0], STAMP, RT_DESCRIPTION, RT_DESCRIPTION, LOCATION))
+
+with open('RT_Visits.ics', 'wb') as f:
+    f.write(cal.to_ical())
