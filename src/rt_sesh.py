@@ -95,8 +95,9 @@ cal = package_tester.Calendar()
 # Set ourselves as the calendar's owner, required by most servers
 cal.add('attendee', f'MAILTO:{EMAIL}')
 
-cal.add_component(event_maker.Create_iCal_Event(
-    RT_DAYS_START[0], RT_DAYS_END[0], STAMP, RT_DESCRIPTION, RT_DESCRIPTION, LOCATION))
+for id in range(len(RT_DAYS_START)):
+    cal.add_component(event_maker.Create_iCal_Event(
+        RT_DAYS_START[id], RT_DAYS_END[id], STAMP, RT_DESCRIPTION, RT_DESCRIPTION, LOCATION))
 
 with open('RT_Visits.ics', 'wb') as f:
     f.write(cal.to_ical())
