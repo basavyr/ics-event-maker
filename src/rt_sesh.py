@@ -111,9 +111,16 @@ cal.add('attendee', f'MAILTO:{EMAIL}')
 # with open('RT_Visits.ics', 'wb') as f:
 #     f.write(cal.to_ical())
 
-for id in range(len(NUTRITION_DAYS_START)):
-    cal.add_component(event_maker.Create_iCal_Event(
-        NUTRITION_DAYS_START[id], NUTRITION_DAYS_END[id], STAMP, NUTRITION_DESCRIPTION, NUTRITION_DESCRIPTION, LOCATION))
+# for id in range(len(NUTRITION_DAYS_START)):
+#     cal.add_component(event_maker.Create_iCal_Event(
+#         NUTRITION_DAYS_START[id], NUTRITION_DAYS_END[id], STAMP, NUTRITION_DESCRIPTION, NUTRITION_DESCRIPTION, LOCATION))
 
-with open('NUTRITION_Visits.ics', 'wb') as f:
+# with open('NUTRITION_Visits.ics', 'wb') as f:
+#     f.write(cal.to_ical())
+
+for id in range(len(TOXIC_DAYS_START)):
+    cal.add_component(event_maker.Create_iCal_Event(
+        TOXIC_DAYS_START[id], TOXIC_DAYS_END[id], STAMP, TOXIC_DESCRIPTION, TOXIC_DESCRIPTION, LOCATION))
+
+with open('TOXICOLOGY_Visits.ics', 'wb') as f:
     f.write(cal.to_ical())
